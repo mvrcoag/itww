@@ -1,0 +1,439 @@
+---
+import "../styles/global.css";
+
+const repoUrl = "https://github.com/mvrcoag/itww";
+const dmgUrl = "https://github.com/mvrcoag/itww/releases/latest/download/itww.dmg";
+const baseUrl = import.meta.env.BASE_URL;
+const faviconHref = `${baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`}favicon.svg`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#050505" />
+    <title>itww — Native Apple Intelligence writing HUD for macOS</title>
+    <meta
+      name="description"
+      content="Select text in any Mac app, press Control+Option+I, and stream grammar fixes, sharper phrasing, or custom rewrites using on-device Apple Intelligence."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="itww — Better words, one keystroke away." />
+    <meta
+      property="og:description"
+      content="A tiny macOS menu bar app that pipes selected text straight through Siri & Apple Intelligence with live word diffs and one-key replacement."
+    />
+    <link rel="icon" href={faviconHref} type="image/svg+xml" />
+  </head>
+  <body>
+    <div class="ambient" aria-hidden="true">
+      <span class="oil oil-one"></span>
+      <span class="oil oil-two"></span>
+      <span class="oil oil-three"></span>
+    </div>
+
+    <div class="site-shell">
+      <header class="site-header" id="top">
+        <div class="header-inner page-width">
+          <div style="display:flex;align-items:baseline;">
+            <a href="#top" class="nav-brand" aria-label="itww home">
+              <em>itww</em><span class="brand-dot">.</span>
+            </a>
+            <a
+              href="https://www.mvrcoag.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="brand-by"
+            >
+              by mvrcoag
+            </a>
+          </div>
+
+          <nav class="header-nav" aria-label="Primary">
+            <a href="#demo">Interactive Demo</a>
+            <a href="#workflow">Workflow</a>
+            <a href="#craft">Craft</a>
+            <a href={repoUrl} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          </nav>
+
+          <a href={dmgUrl} class="header-cta">
+            Download .dmg
+          </a>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero page-width">
+          <p class="eyebrow">
+            <span class="eyebrow-line"></span>
+            <span>NATIVE APPLE INTELLIGENCE FOR MACOS</span>
+          </p>
+
+          <h1>
+            Select text.<br />
+            Make it <em>sharp</em><span class="hero-period">.</span>
+          </h1>
+
+          <p class="hero-sub">
+            Highlight any draft in Slack, Mail, Linear, or Cursor. Hit your shortcut and stream clean grammar, tighter prose, or custom instructions straight from on-device Apple Intelligence.
+          </p>
+
+          <div class="hero-actions">
+            <a href={dmgUrl} class="btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              <span>Download for macOS</span>
+            </a>
+
+            <a href={repoUrl} target="_blank" rel="noopener noreferrer" class="btn-secondary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.39-5.27 5.67.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.68.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/>
+              </svg>
+              <span>View Source</span>
+            </a>
+          </div>
+
+          <p class="hero-meta">
+            Default trigger <kbd>⌃</kbd> <kbd>⌥</kbd> <kbd>I</kbd> · Apple Silicon · 100% On-Device or Private Cloud Compute
+          </p>
+
+          <!-- Interactive HUD Playground -->
+          <div class="stage-wrap" id="demo">
+            <div class="stage-hint">
+              <span class="stage-hint-dot"></span>
+              <span>Psst… it's interactive — switch modes, toggle Diff, or drag the HUD header</span>
+            </div>
+
+            <div class="desktop-canvas">
+              <div class="mock-menubar">
+                <div class="mock-menubar-left">
+                  <strong style="color:#f0eef3;"></strong>
+                  <strong style="color:#f0eef3;">Slack</strong>
+                  <span>File</span>
+                  <span>Edit</span>
+                  <span>Window</span>
+                </div>
+                <div class="mock-menubar-right">
+                  <span class="menubar-pill">✦ itww</span>
+                  <span>Thu 1:32 AM</span>
+                </div>
+              </div>
+
+              <div class="editor-card">
+                <div class="editor-header">
+                  <div class="traffic-lights">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <span class="editor-app-tag">#product-launch — message draft</span>
+                </div>
+                <div class="editor-body">
+                  Hey team —{" "}
+                  <span class="selected-highlight" data-source-span>
+                    we has finish the new onboarding flow yesterday night, let me know if anyone spot some wierd bugs before we ship it to prod.
+                  </span>
+                </div>
+              </div>
+
+              <div class="hud-window" data-hud-window>
+                <div class="hud-header" data-hud-drag title="Drag to move HUD">
+                  <span class="hud-grip"></span>
+                  <span style="color:#a869ea;">✦</span>
+                  <span class="hud-brand">itww</span>
+                  <span class="hud-app">· Slack</span>
+                  <span class="hud-badge">On-Device</span>
+                  <button type="button" class="hud-diff-btn" data-diff-toggle aria-pressed="false">
+                    Diff ⌘D
+                  </button>
+                </div>
+
+                <div class="hud-modes" role="tablist" aria-label="Rewrite modes">
+                  <button type="button" class="mode-pill active" data-mode="improve">
+                    Improve <kbd>⌘1</kbd>
+                  </button>
+                  <button type="button" class="mode-pill" data-mode="grammar">
+                    Fix Grammar <kbd>⌘2</kbd>
+                  </button>
+                  <button type="button" class="mode-pill" data-mode="concise">
+                    Concise <kbd>⌘3</kbd>
+                  </button>
+                  <button type="button" class="mode-pill" data-mode="professional">
+                    Professional <kbd>⌘5</kbd>
+                  </button>
+                </div>
+
+                <div class="hud-output" data-hud-output>
+                  we finished the new onboarding flow last night. Let me know if anyone spots any weird bugs before we ship to prod.
+                </div>
+
+                <div class="hud-prompt-row">
+                  <span style="font-size:11px;color:#8f8c96;">✦ Instruction:</span>
+                  <div class="hud-prompt-chips">
+                    <button type="button" class="tweak-chip" data-tweak="none">None</button>
+                    <button type="button" class="tweak-chip" data-tweak="bullets">Bullet list</button>
+                    <button type="button" class="tweak-chip" data-tweak="spanish">→ Spanish</button>
+                    <button type="button" class="tweak-chip" data-tweak="punchy">Ultra short</button>
+                  </div>
+                </div>
+
+                <div class="hud-footer">
+                  <div class="hud-keys">
+                    <span>Cancel <kbd>esc</kbd></span>
+                    <span>Retry <kbd>⌘R</kbd></span>
+                    <span>Copy <kbd>⌘C</kbd></span>
+                  </div>
+                  <button type="button" class="hud-replace-btn" data-replace-btn>
+                    Replace ↩
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 01 Workflow -->
+        <section class="page-width section-grid" id="workflow">
+          <div class="section-aside">
+            <span class="section-number">01</span>
+            <p>How it works</p>
+          </div>
+          <div>
+            <h2 class="section-lead">
+              No context switching, no browser tabs, no <em>copy-paste</em> gymnastics<span class="hero-period">.</span>
+            </h2>
+
+            <div class="steps-list">
+              <article class="step-card">
+                <span class="step-tag">STEP 01</span>
+                <h3>Highlight anywhere</h3>
+                <p>
+                  Works in native AppKit views, Xcode, Notes, Mail, and Electron apps like Cursor, Slack, Notion, or Arc while preserving your clipboard.
+                </p>
+              </article>
+
+              <article class="step-card">
+                <span class="step-tag">STEP 02</span>
+                <h3>Stream &amp; steer</h3>
+                <p>
+                  Press ⌃⌥I. The movable glass HUD appears right next to your cursor, streaming Apple Intelligence tokens live with optional word diffs and custom tweaks.
+                </p>
+              </article>
+
+              <article class="step-card">
+                <span class="step-tag">STEP 03</span>
+                <h3>Hit Return to replace</h3>
+                <p>
+                  Press Return and itww reactivates your app, drops the polished sentence into place, and keeps native ⌘Z undo intact.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- 02 Craft -->
+        <section class="page-width section-grid" id="craft">
+          <div class="section-aside">
+            <span class="section-number">02</span>
+            <p>Under the hood</p>
+          </div>
+          <div>
+            <h2 class="section-lead">
+              Built natively in Swift for macOS <em>FoundationModels</em><span class="hero-period">.</span>
+            </h2>
+
+            <div class="feature-rows">
+              <div class="feature-row">
+                <span class="feature-meta">ZERO API KEYS</span>
+                <div>
+                  <h3>On-Device Siri &amp; Apple Intelligence</h3>
+                  <p>
+                    Talks directly to Apple's local SystemLanguageModel and PrivateCloudComputeLanguageModel. Nothing leaves your Mac, and there are zero subscriptions or API bills.
+                  </p>
+                </div>
+              </div>
+
+              <div class="feature-row">
+                <span class="feature-meta">CUSTOM PROMPTS</span>
+                <div>
+                  <h3>One-off tweaks &amp; always-on style rules</h3>
+                  <p>
+                    Set permanent writing rules in Settings (like "never use em dashes") or type quick instructions right inside the HUD to translate, bulletize, or shift tone on the fly.
+                  </p>
+                </div>
+              </div>
+
+              <div class="feature-row">
+                <span class="feature-meta">UP-FRONT SETUP</span>
+                <div>
+                  <h3>Guided permissions &amp; movable glass HUD</h3>
+                  <p>
+                    Greets you on first launch to verify Accessibility and Apple Intelligence readiness, lives quietly in your menu bar, and lets you drag the HUD anywhere on screen.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 03 Download -->
+        <section class="page-width section-grid" id="download">
+          <div class="section-aside">
+            <span class="section-number">03</span>
+            <p>Get started</p>
+          </div>
+          <div>
+            <div class="download-box">
+              <div>
+                <h2>Ready when you type<span class="hero-period">.</span></h2>
+                <p>Free &amp; open source · Signed universal macOS app bundle (.dmg)</p>
+              </div>
+              <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                <a href={dmgUrl} class="btn-primary">Download itww.dmg</a>
+                <a href={repoUrl} target="_blank" rel="noopener noreferrer" class="btn-secondary">GitHub Repo ↗</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer page-width">
+        <span>
+          Crafted by <a href="https://www.mvrcoag.com" target="_blank" rel="noopener noreferrer">Marco A. García (mvrcoag)</a>
+        </span>
+        <div class="footer-links">
+          <a href={repoUrl} target="_blank" rel="noopener noreferrer">Source</a>
+          <a href={`${repoUrl}/releases`} target="_blank" rel="noopener noreferrer">Releases</a>
+          <a href="#top">↑ Back to top</a>
+        </div>
+      </footer>
+    </div>
+
+    <script is:inline>
+      const variants = {
+        improve: {
+          plain: "we finished the new onboarding flow last night. Let me know if anyone spots any weird bugs before we ship to prod.",
+          diff: `<span class="diff-del">we has finish</span> <span class="diff-ins">we finished</span> the new onboarding flow <span class="diff-del">yesterday</span> <span class="diff-ins">last</span> night<span class="diff-del">, let</span><span class="diff-ins">. Let</span> me know if anyone <span class="diff-del">spot some wierd</span> <span class="diff-ins">spots any weird</span> bugs before we ship <span class="diff-del">it</span> to prod.`
+        },
+        grammar: {
+          plain: "we finished the new onboarding flow last night, so let me know if anyone spots any weird bugs before we ship it to prod.",
+          diff: `we <span class="diff-del">has finish</span> <span class="diff-ins">finished</span> the new onboarding flow <span class="diff-del">yesterday</span> <span class="diff-ins">last</span> night, <span class="diff-ins">so</span> let me know if anyone <span class="diff-del">spot some wierd</span> <span class="diff-ins">spots any weird</span> bugs before we ship it to prod.`
+        },
+        concise: {
+          plain: "finished the new onboarding flow last night. Flag any bugs before we ship to prod.",
+          diff: `<span class="diff-del">we has finish</span> <span class="diff-ins">finished</span> the new onboarding flow <span class="diff-del">yesterday</span> <span class="diff-ins">last</span> night<span class="diff-del">, let me know if anyone spot some wierd</span><span class="diff-ins">. Flag any</span> bugs before we ship <span class="diff-del">it</span> to prod.`
+        },
+        professional: {
+          plain: "we completed the new onboarding flow last night. Please flag any issues you spot before we deploy to production.",
+          diff: `we <span class="diff-del">has finish</span> <span class="diff-ins">completed</span> the new onboarding flow <span class="diff-del">yesterday</span> <span class="diff-ins">last</span> night<span class="diff-del">, let me know if anyone spot some wierd bugs</span><span class="diff-ins">. Please flag any issues you spot</span> before we <span class="diff-del">ship it to prod</span><span class="diff-ins">deploy to production</span>.`
+        }
+      };
+
+      const tweaks = {
+        bullets: {
+          plain: "• Finished the new onboarding flow last night.\n• Flag any bugs before we ship to prod.",
+          diff: `<span class="diff-ins">• Finished</span> the new onboarding flow <span class="diff-ins">last night.</span><br/><span class="diff-ins">• Flag any</span> bugs before we ship to prod.`
+        },
+        spanish: {
+          plain: "terminamos el nuevo flujo de onboarding anoche. Avísenme si ven algún bug raro antes de subirlo a producción.",
+          diff: `<span class="diff-ins">terminamos el nuevo flujo de onboarding anoche. Avísenme si ven algún bug raro antes de subirlo a producción.</span>`
+        },
+        punchy: {
+          plain: "onboarding flow is done — flag any bugs before prod.",
+          diff: `<span class="diff-ins">onboarding flow is done — flag any bugs before prod.</span>`
+        }
+      };
+
+      let activeMode = "improve";
+      let activeTweak = "none";
+      let showDiff = false;
+
+      const outputEl = document.querySelector("[data-hud-output]");
+      const sourceSpan = document.querySelector("[data-source-span]");
+      const diffBtn = document.querySelector("[data-diff-toggle]");
+      const replaceBtn = document.querySelector("[data-replace-btn]");
+      const modeBtns = document.querySelectorAll("[data-mode]");
+      const tweakBtns = document.querySelectorAll("[data-tweak]");
+
+      function renderHUD() {
+        if (!outputEl) return;
+        const entry = activeTweak !== "none" ? tweaks[activeTweak] : variants[activeMode];
+        if (showDiff) {
+          outputEl.innerHTML = entry.diff;
+        } else {
+          outputEl.textContent = entry.plain;
+          outputEl.style.whiteSpace = "pre-line";
+        }
+      }
+
+      modeBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          activeMode = btn.getAttribute("data-mode") || "improve";
+          activeTweak = "none";
+          modeBtns.forEach((b) => b.classList.toggle("active", b === btn));
+          tweakBtns.forEach((t) => t.classList.toggle("active", t.getAttribute("data-tweak") === "none"));
+          renderHUD();
+        });
+      });
+
+      tweakBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          activeTweak = btn.getAttribute("data-tweak") || "none";
+          tweakBtns.forEach((t) => t.classList.toggle("active", t === btn));
+          renderHUD();
+        });
+      });
+
+      diffBtn?.addEventListener("click", () => {
+        showDiff = !showDiff;
+        diffBtn.setAttribute("aria-pressed", showDiff ? "true" : "false");
+        renderHUD();
+      });
+
+      replaceBtn?.addEventListener("click", () => {
+        if (!sourceSpan) return;
+        const entry = activeTweak !== "none" ? tweaks[activeTweak] : variants[activeMode];
+        sourceSpan.textContent = entry.plain;
+        sourceSpan.classList.add("replaced");
+        replaceBtn.textContent = "Replaced ✓";
+        setTimeout(() => {
+          replaceBtn.textContent = "Replace ↩";
+        }, 1400);
+      });
+
+      // Draggable HUD inside demo stage
+      const hudWindow = document.querySelector("[data-hud-window]");
+      const dragBar = document.querySelector("[data-hud-drag]");
+      let dragging = false;
+      let startX = 0;
+      let startY = 0;
+      let offsetX = 0;
+      let offsetY = 0;
+
+      dragBar?.addEventListener("pointerdown", (e) => {
+        if (e.target.closest("button")) return;
+        dragging = true;
+        startX = e.clientX - offsetX;
+        startY = e.clientY - offsetY;
+        hudWindow?.classList.add("dragging");
+        dragBar.setPointerCapture(e.pointerId);
+      });
+
+      dragBar?.addEventListener("pointermove", (e) => {
+        if (!dragging || !hudWindow) return;
+        offsetX = Math.max(-120, Math.min(120, e.clientX - startX));
+        offsetY = Math.max(-90, Math.min(70, e.clientY - startY));
+        hudWindow.style.transform = `translate3d(${offsetX}px, ${offsetY}px, 0)`;
+      });
+
+      const endDrag = () => {
+        dragging = false;
+        hudWindow?.classList.remove("dragging");
+      };
+      dragBar?.addEventListener("pointerup", endDrag);
+      dragBar?.addEventListener("pointercancel", endDrag);
+    </script>
+  </body>
+</html>

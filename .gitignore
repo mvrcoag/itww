@@ -1,0 +1,9 @@
+.build/
+build/
+.DS_Store
+.swiftpm/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+xcuserdata/
+website/node_modules/
+website/dist/
+website/.astro/
