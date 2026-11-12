@@ -6,7 +6,7 @@ Native macOS menu bar app that pipes any selected text straight through on-devic
 
 ## Features
 
-- **Global hotkey anywhere (`⌃⌥I` by default).** Works across native AppKit apps as well as Electron editors and browsers (Slack, Cursor, Linear, Notion, Arc) while preserving your clipboard.
+- **Global hotkey anywhere (`⌃⌥I` by default).** Works across native AppKit apps as well as Electron editors and browsers (Slack, Linear, Notion, Arc) while preserving your clipboard.
 - **Movable floating HUD.** Appears near your cursor, streams tokens live, computes inline word-level diffs (`⌘D`), and drags anywhere on screen.
 - **5 modes + custom instructions.** Switch between **Improve**, **Fix Grammar**, **Concise**, **Clear**, and **Professional** (`⌘1`–`⌘5`), type one-off instructions right inside the HUD (e.g. `"bullet list"`, `"translate to Spanish"`), or configure permanent style rules in Settings.
 - **100% private via `FoundationModels`.** Runs locally on Apple Silicon with `SystemLanguageModel` or `PrivateCloudComputeLanguageModel` — zero API keys or cloud bills.
