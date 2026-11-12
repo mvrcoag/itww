@@ -23,6 +23,7 @@ button, input { font: inherit; }
 
 .page-width { width: min(100% - 96px, 1360px); margin-inline: auto; }
 .site-shell { position: relative; z-index: 1; }
+section[id], div[id="demo"] { scroll-margin-top: 100px; }
 
 /* Signature mvrcoag.com slow-moving oil light over deep black canvas */
 .ambient {

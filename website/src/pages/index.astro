@@ -33,8 +33,8 @@ const faviconHref = `${baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`}favicon.s
       <span class="oil oil-three"></span>
     </div>
 
-    <div class="site-shell">
-      <header class="site-header" id="top">
+    <div class="site-shell" id="top">
+      <header class="site-header">
         <div class="header-inner page-width">
           <div style="display:flex;align-items:baseline;">
             <a href="#top" class="nav-brand" aria-label="itww home">
@@ -434,6 +434,17 @@ const faviconHref = `${baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`}favicon.s
       };
       dragBar?.addEventListener("pointerup", endDrag);
       dragBar?.addEventListener("pointercancel", endDrag);
+
+      document.querySelectorAll('a[href="#top"]').forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+          if (location.hash === "#top") {
+            history.replaceState(null, "", location.pathname + location.search);
+          }
+        });
+      });
     </script>
   </body>
 </html>
